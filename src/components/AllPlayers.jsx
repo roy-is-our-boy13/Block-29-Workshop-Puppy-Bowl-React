@@ -29,13 +29,20 @@ const AllPlayers = () =>
 
     const playersToDisplay = players;
 
-    return(
+    return (
         <>
             <div>
                 <label>
                     Search: <input />
                 </label>
             </div>
+    
+            {playersToDisplay.map((player) => (
+                <h3 key={player.id}>{player.name}</h3>
+            ))}
         </>
     );
-}
+};
+    
+
+export default AllPlayers;
