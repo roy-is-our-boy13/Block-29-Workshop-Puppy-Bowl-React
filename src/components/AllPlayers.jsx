@@ -7,6 +7,7 @@ const AllPlayers = () =>
     const [error, setError] = useState(null);
     const [searchParam, setSearchParm] = useState("");
 
+    console.log(searchParam);
 
     useEffecr(() => 
     {
@@ -28,7 +29,6 @@ const AllPlayers = () =>
         getAllPlayers();
     }, []);
 
-
     const playersToDisplay = players;
 
     return (
@@ -36,8 +36,10 @@ const AllPlayers = () =>
             <div>
                 <label>
                     Search: <input 
-                    
-                    />
+                    type = "text"
+                    placeholder="search"
+                    onChange={(e) => setSearchParm(e.target.value)
+                    }/>
                 </label>
             </div>
     
