@@ -9,7 +9,7 @@ const AllPlayers = () =>
 
     console.log(searchParam);
 
-    useEffecr(() => 
+    useEffect(() => 
     {
         async function getAllPlayers()
         {
@@ -50,5 +50,4 @@ const AllPlayers = () =>
     );
 };
     
-
 export default AllPlayers;
