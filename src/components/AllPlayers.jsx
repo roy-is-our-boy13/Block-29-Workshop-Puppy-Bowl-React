@@ -7,12 +7,33 @@ const AllPlayers = () =>
     const [error, setError] = useState(null);
 
     useEffecr(() => 
+    {
+        async function getAllPlayers()
         {
-            async function getAllPlayers()
+            const APIResponse = await fetchAllPlayers();
+            console.log(APIResponse.data.players);
+
+            if(APIResponse.success)
             {
-                
+                setPlayers(APIResponse.data.players);
+            }
+            else
+            {
+                setError(APIResponse.error.message);
             }
         }
+        
+        getAllPlayers();
+    }, []);
 
-    );
+
+    const playersToDisplay = players;
+
+
+
+
+
+
+
+
 }
