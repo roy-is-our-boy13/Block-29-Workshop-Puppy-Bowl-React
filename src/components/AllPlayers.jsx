@@ -5,6 +5,8 @@ const AllPlayers = () =>
 {
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState(null);
+    const [searchParam, setSearchParm] = useState("");
+
 
     useEffecr(() => 
     {
@@ -33,7 +35,9 @@ const AllPlayers = () =>
         <>
             <div>
                 <label>
-                    Search: <input />
+                    Search: <input 
+                    
+                    />
                 </label>
             </div>
     
