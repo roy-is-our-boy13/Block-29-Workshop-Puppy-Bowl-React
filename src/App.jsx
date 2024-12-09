@@ -12,8 +12,8 @@ function App()
   return (
     <>
       <h1>Player Search</h1>
-      <AllPlayers />
       <NewPlayerForm />
+      <AllPlayers />
     </>
   )
 }
