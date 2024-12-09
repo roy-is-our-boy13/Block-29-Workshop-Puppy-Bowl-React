@@ -5,7 +5,7 @@ const AllPlayers = () =>
 {
     const [players, setPlayers] = useState([]);
     const [error, setError] = useState(null);
-    const [searchParam, setSearchParm] = useState("");
+    const [searchParam, setSearchParam] = useState("");
 
     console.log(searchParam);
 
@@ -29,7 +29,8 @@ const AllPlayers = () =>
         getAllPlayers();
     }, []);
 
-    const playersToDisplay = players;
+    const playersToDisplay = searchParam ? players.filter((player) => 
+        player.name.includes(searchParam)) : players;
 
     return (
         <>
@@ -37,8 +38,8 @@ const AllPlayers = () =>
                 <label>
                     Search: <input 
                     type = "text"
-                    placeholder="search"
-                    onChange={(e) => setSearchParm(e.target.value)
+                    placeholder = "search"
+                    onChange={(e) => setSearchParam(e.target.value)
                     }/>
                 </label>
             </div>
