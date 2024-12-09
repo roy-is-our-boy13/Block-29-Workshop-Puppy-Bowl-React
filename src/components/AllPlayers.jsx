@@ -29,11 +29,13 @@ const AllPlayers = () =>
 
     const playersToDisplay = players;
 
-
-
-
-
-
-
-
+    return(
+        <>
+            <div>
+                <label>
+                    Search: <input />
+                </label>
+            </div>
+        </>
+    );
 }
