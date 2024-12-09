@@ -30,11 +30,43 @@ export async function fetchSinglePlayer()
     }
 }
 
-export async function addNewPlayer()
+export async function addNewPlayer(playerObj)
 {
     try
     {
+        const response = await fetch(`${baseUrl}players`, 
+        {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json',},
+            body: JSON.stringify(playerObj),
+        });
+            
+        if (!response.ok) 
+        {
+            throw new Error(`API returned status ${response.status}`);
+        }
+        const result = await response.json();
+        return result;
+    }
+    catch(error)
+    {
+        console.error(error);
+    }
+}
 
+export async function removePlayer(playerId)
+{
+    try
+    {
+        const response = await fetch(`${APIURL}players/${playerId}`, 
+        {
+            method: 'DELETE',
+        });
+    
+        if (!response.ok) 
+        {
+            throw new Error(`Unable to remove the player with the specified ID ${playerId}`);
+        }
     }
     catch(error)
     {
