@@ -15,12 +15,12 @@ const SinglePlayer = () =>
         {
             try
             {
-                const data = await fetchSinglePlayer(playerId);
+                const APIResponse = await fetchSinglePlayer(playerId);
             
-                if (data?.player) 
+                if (APIResponse.data.player) 
                 {
-                    console.log("data?.player", data.player);
-                    setPlayerData(data.player);
+                    console.log("data?.player", APIResponse.data.player);
+                    setPlayerData(APIResponse.data.player);
                 } 
                 else 
                 {

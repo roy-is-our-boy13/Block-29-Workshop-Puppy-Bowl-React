@@ -48,7 +48,6 @@ const NewPlayerForm = () =>
         {
             console.error(error);
         }
-
     };
     
     return(
