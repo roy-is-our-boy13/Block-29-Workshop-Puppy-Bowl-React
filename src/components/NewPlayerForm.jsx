@@ -76,18 +76,4 @@ const NewPlayerForm = () =>
                         onChange={(e) => setPlayerPhoto(e.target.value)} required/>
                     <select
                         id="statusOfThePlayer"
-                        value={playerStatus}
-                        onChange={(e) => setPlayerStatus(e.target.value)}>
-                        <option value="bench">Bench</option>
-                        <option value="field">Field</option>
-                    </select>
-                    <button type="submit">
-                        Add Player
-                    </button>
-                </form>
-            </div>
-        </>
-    );
-  };
-  
-  export default NewPlayerForm;
+                 

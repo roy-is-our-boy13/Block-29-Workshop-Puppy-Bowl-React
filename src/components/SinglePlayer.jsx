@@ -9,18 +9,16 @@ const SinglePlayer = () =>
     const navigate = useNavigate();
     const { playerId } = useParams();
 
-    //const DataOfPlayer = JSON.parse(localStorage.getItem('DetailsOfThePlayer'));
-
     useEffect(() => 
     {
         const getPlayerData = async () => 
         {
             const data = await fetchSinglePlayer(playerId);
             
-            if (data) 
+            if (data?.player) 
             {
-                console.log(data);
-                setPlayerData(data);
+                console.log(data.player);
+                setPlayerData(data.player);
 
             } else 
             {
