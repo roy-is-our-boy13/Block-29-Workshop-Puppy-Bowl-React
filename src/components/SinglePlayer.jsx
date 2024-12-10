@@ -13,22 +13,29 @@ const SinglePlayer = () =>
     {
         const getPlayerData = async () => 
         {
-            const data = await fetchSinglePlayer(playerId);
+            try
+            {
+                const data = await fetchSinglePlayer(playerId);
             
-            if (data?.player) 
+                if (data?.player) 
+                {
+                    console.log("data?.player", data.player);
+                    setPlayerData(data.player);
+                } 
+                else 
+                {
+                    console.error("Player data could not be fetched");
+                }
+            }
+            catch (error) 
             {
-                console.log(data.player);
-                setPlayerData(data.player);
-
-            } else 
-            {
-                console.error("Player data could not be fetched");
+                console.error("Error fetching player data:", error);
             }
         };
 
         if(playerId)
         {
-            console.log(playerId);
+            console.log("Player ID:", playerId);
             getPlayerData();
         }
 
@@ -41,20 +48,23 @@ const SinglePlayer = () =>
     
     if (!playerData) 
     {
-        return <p>No player data found!</p>;
+        return( <>
+            <p>No player data found!</p> 
+            <button onClick={goBack}>Back</button>
+            </>);
     }
 
     
-    const photo = playerData.photoUrl || "https://via.placeholder.com/150";
+    const photo = playerData?.imageUrl || "https://via.placeholder.com/150";
 
     return(
         <>
             <section>
-                <img src={photo} alt={playerData.name} />
-                <h3>{playerData.name}</h3>
-                <p><b>ID:</b> {playerData.id}</p>
-                <p><b>Breed:</b> {playerData.breed}</p>
-                <p><b>Status:</b> {playerData.status}</p>
+                <img src={photo} alt={playerData?.name || "Player Photo"} />
+                <h3>{playerData?.name || "Name not available"}</h3>
+                <p><b>ID:</b> {playerData?.id || "No ID"}</p>
+                <p><b>Breed:</b> {playerData?.breed || "No Breed"}</p>
+                <p><b>Status:</b> {playerData?.status || "No Status"}</p>
                 <button onClick={goBack}>Back</button>
             </section>
         </>
