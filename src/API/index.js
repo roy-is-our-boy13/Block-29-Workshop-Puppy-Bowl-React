@@ -16,11 +16,11 @@ export async function fetchAllPlayers()
     }
 }
 
-export async function fetchSinglePlayer()
+export async function fetchSinglePlayer(playerId)
 {
     try
     {
-        const response = await fetch(`${baseUrl}players/${playerId}`);
+        const response = await fetch(`${baseUrl}/players/${playerId}`);
         const result = await response.json();
         return result;
     }
@@ -34,7 +34,7 @@ export async function addNewPlayer(playerObj)
 {
     try
     {
-        const response = await fetch(`${baseUrl}players`, 
+        const response = await fetch(`${baseUrl}/players`, 
         {
             method: 'POST',
             headers: {'Content-Type': 'application/json',},
@@ -58,7 +58,7 @@ export async function removePlayer(playerId)
 {
     try
     {
-        const response = await fetch(`${APIURL}players/${playerId}`, 
+        const response = await fetch(`${baseUrl}/players/${playerId}`, 
         {
             method: 'DELETE',
         });

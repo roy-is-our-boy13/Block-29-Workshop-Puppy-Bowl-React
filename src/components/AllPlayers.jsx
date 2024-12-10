@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAllPlayers } from "../API";
+import { fetchAllPlayers, fetchSinglePlayer, removePlayer} from "../API";
 
 const AllPlayers = () => 
 {
@@ -29,6 +29,33 @@ const AllPlayers = () =>
         getAllPlayers();
     }, []);
 
+
+    const handleSeeDetails = async (playerId) => 
+    {
+        const player = await fetchSinglePlayer(playerId);
+        console.log(player);
+
+        localStorage.setItem("DetailsOfThePlayer", JSON.stringify(player));
+        
+        //window.location.href = "detailsPage.html";
+    };
+
+
+    const handleRemove = async (playerId) => 
+    {
+        await removePlayer(playerId);
+        const updatedPlayers = await fetchAllPlayers();
+        
+        if (updatedPlayers.success) 
+        {
+            setPlayers(updatedPlayers.data.players);
+        } 
+        else 
+        {
+            setError(updatedPlayers.error.message);
+        }
+    };
+
     const playersToDisplay = searchParam ? players.filter((player) => 
         player.name.includes(searchParam)) : players;
 
@@ -45,9 +72,19 @@ const AllPlayers = () =>
             </div>
     
             {playersToDisplay.map((player) => (
-                <>
-                    <h3 key={player.id}>{player.name}</h3>
-                </>
+                <div key={player.id} className="player-card">
+                <h3>{player.name}</h3>
+                <button
+                    className="detailsButton"
+                    onClick={() => handleSeeDetails(player.id)}>
+                    See Details
+                </button>
+                <button
+                    className="removeButton"
+                    onClick={() => handleRemove(player.id)}>
+                    Remove
+                </button>
+            </div>
             ))}
         </>
     );

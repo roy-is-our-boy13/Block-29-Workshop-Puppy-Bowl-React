@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAllPlayers } from "../API";
+import { addNewPlayer, fetchAllPlayers } from "../API";
 
 const NewPlayerForm = () => 
 {
@@ -8,7 +8,7 @@ const NewPlayerForm = () =>
     const [playerPhoto, setPlayerPhoto] = useState("");
     const [playerStatus, setPlayerStatus] = useState("bench");
 
-    const inputPlayer = (event) => 
+    const inputPlayer = async (event) => 
     {
         event.preventDefault();
 
@@ -22,9 +22,20 @@ const NewPlayerForm = () =>
                 status: playerStatus,
             };
 
-            console.log("New Player Added:", newPlayer);
+            const addedPlayer = await addNewPlayer(newPlayer);
+            console.log("New Player Added:", addedPlayer);
 
-            fetchAllPlayers();
+            if (addedPlayer.success) 
+            {
+                const updatedPlayers = await fetchAllPlayers();
+                console.log("Updated Players:", updatedPlayers);
+            } 
+            else 
+            {
+                console.error("Error adding player:", addedPlayer.error.message);
+            }
+    
+            //fetchAllPlayers();
 
             setPlayerName("");
             setPlayerBreed("");
