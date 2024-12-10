@@ -40,15 +40,4 @@ const AllPlayers = () =>
                     type = "text"
                     placeholder = "search"
                     onChange={(e) => setSearchParam(e.target.value)
-                    }/>
-                </label>
-            </div>
-    
-            {playersToDisplay.map((player) => (
-                <h3 key={player.id}>{player.name}</h3>
-            ))}
-        </>
-    );
-};
-    
-export default AllPlayers;
+     

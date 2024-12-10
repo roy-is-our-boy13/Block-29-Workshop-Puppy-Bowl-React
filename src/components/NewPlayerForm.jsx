@@ -69,7 +69,7 @@ const NewPlayerForm = () =>
                         <option value="bench">Bench</option>
                         <option value="field">Field</option>
                     </select>
-                    <button className="blackButton" type="submit">
+                    <button type="submit">
                         Add Player
                     </button>
                 </form>
