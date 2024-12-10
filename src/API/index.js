@@ -21,6 +21,12 @@ export async function fetchSinglePlayer(playerId)
     try
     {
         const response = await fetch(`${baseUrl}/players/${playerId}`);
+
+        if (!response.ok) 
+        {
+            throw new Error('Player data not found.');
+        }
+
         const result = await response.json();
         return result;
     }

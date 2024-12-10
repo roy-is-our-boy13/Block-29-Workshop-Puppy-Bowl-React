@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import AllPlayers from './components/AllPlayers.jsx';
 import NewPlayerForm from './components/NewPlayerForm.jsx';
+import SinglePlayer from "./components/SinglePlayer.jsx";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App()
 {
@@ -13,7 +15,12 @@ function App()
     <>
       <h1>Player Search</h1>
       <NewPlayerForm />
-      <AllPlayers />
+      <Router>
+        <Routes>
+          <Route path="/" element={<AllPlayers />} />
+          <Route path="/player/:playerId" element={<SinglePlayer />} />
+      </Routes>
+    </Router>
     </>
   )
 }
